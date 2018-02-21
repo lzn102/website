@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+  <div class="py-5 bg-primary">
+    <div class="container">
+      <div class="row">
+          {% for subject in subjects %}
+        <div class="py-5 col-md-6">
+          <div class="row">
+            <div class="text-center col-4"><i class="d-block mx-auto fa fa-5x {% cycle 'fa-angle-double-up' 'fa-map-o' 'fa-file-o' 'fa-code' 'fa-bug' 'fa-share'%}"></i></div>
+            <div class="col-8">
+                <h5 class="mb-3 text-center"><b><a href="{% url 'blog:content' subject.id %}" style="text-decoration: none; color: black">{{ subject.title }}</a></b></h5>
+              <p class="my-1 text-center">{% autoescape off %}{{ subject.content | truncatechars_html:50 }}{% endautoescape %}</p>
+            </div>
+          </div>
+        </div>
+          {% endfor %}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
